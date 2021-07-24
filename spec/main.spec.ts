@@ -4,8 +4,8 @@ describe('Currency', () => {
   it('Multiplication', () => {
     const five: Money = Money.dollar(5);
 
-    expect(five.times(2)).toEqual(Money.dollar(10));
-    expect(five.times(3)).toEqual(Money.dollar(15));
+    expect(five.times(2).equals(Money.dollar(10))).toEqual(true);
+    expect(five.times(3).equals(Money.dollar(15))).toEqual(true);
   });
 
   it('Equality', () => {
@@ -19,12 +19,16 @@ describe('Currency', () => {
   it('Franc Multiplication', () => {
     const five: Franc = Money.franc(5);
     
-    expect(five.times(2)).toEqual(Money.franc(10));
-    expect(five.times(3)).toEqual(Money.franc(15));
+    expect(five.times(2).equals(Money.franc(10))).toEqual(true);
+    expect(five.times(3).equals(Money.franc(15))).toEqual(true);
   });
 
   it('Currency', () => {
     expect('USD').toEqual(Money.dollar(1).getCurrency());
     expect('CHF').toEqual(Money.franc(1).getCurrency());
   });
-})
+
+  it('Different Class Equal', () => {
+    expect(new Money(10, 'CHF').equals(new Franc(10, 'CHF'))).toEqual(true);
+  });
+});
