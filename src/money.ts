@@ -1,4 +1,4 @@
-import { Dollar } from './internal';
+import { Dollar, Franc } from './internal';
 
 export abstract class Money {
   protected amount: number = 0;
@@ -13,6 +13,10 @@ export abstract class Money {
 
   static dollar(amount: number): Money {
     return new Dollar(amount);
+  }
+  
+  static franc(amount: number): Money {
+    return new Franc(amount);
   }
 
   abstract times(multiplier: number): Money;
