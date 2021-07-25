@@ -1,4 +1,4 @@
-import { Dollar, Franc, Money } from '../src/internal';
+import { Franc, Money } from '../src/internal';
 
 describe('Currency', () => {
   it('Multiplication', () => {
@@ -11,8 +11,6 @@ describe('Currency', () => {
   it('Equality', () => {
     expect(Money.dollar(5).equals(Money.dollar(5))).toEqual(true);
     expect(Money.dollar(5).equals(Money.dollar(6))).toEqual(false);
-    expect(Money.franc(5).equals(Money.franc(5))).toEqual(true);
-    expect(Money.franc(5).equals(Money.franc(6))).toEqual(false);
     expect(Money.franc(5).equals(Money.dollar(5))).toEqual(false);
   });
 
@@ -26,9 +24,5 @@ describe('Currency', () => {
   it('Currency', () => {
     expect('USD').toEqual(Money.dollar(1).getCurrency());
     expect('CHF').toEqual(Money.franc(1).getCurrency());
-  });
-
-  it('Different Class Equal', () => {
-    expect(new Money(10, 'CHF').equals(new Franc(10, 'CHF'))).toEqual(true);
   });
 });

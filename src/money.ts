@@ -1,4 +1,4 @@
-import { Dollar, Franc } from './internal';
+import { Franc } from './internal';
 
 export class Money {
   protected amount: number = 0;
@@ -16,11 +16,11 @@ export class Money {
   }
 
   static dollar(amount: number): Money {
-    return new Dollar(amount, 'USD');
+    return new Money(amount, 'USD');
   }
   
   static franc(amount: number): Money {
-    return new Franc(amount, 'CHF');
+    return new Money(amount, 'CHF');
   }
 
   times(multiplier: number): Money {
