@@ -1,4 +1,4 @@
-import { Franc, Money } from '../src/internal';
+import { Bank, Expression, Money } from '../src/internal';
 
 describe('Currency', () => {
   it('Multiplication', () => {
@@ -15,7 +15,7 @@ describe('Currency', () => {
   });
 
   it('Franc Multiplication', () => {
-    const five: Franc = Money.franc(5);
+    const five: Money = Money.franc(5);
     
     expect(five.times(2).equals(Money.franc(10))).toEqual(true);
     expect(five.times(3).equals(Money.franc(15))).toEqual(true);
@@ -24,5 +24,14 @@ describe('Currency', () => {
   it('Currency', () => {
     expect('USD').toEqual(Money.dollar(1).getCurrency());
     expect('CHF').toEqual(Money.franc(1).getCurrency());
+  });
+
+  it('Simple Addition', () => {
+    const five: Money = Money.dollar(5);
+    const sum: Expression = five.plus(five);
+    const bank: Bank = new Bank();
+    const reduced: Money = bank.reduce(sum, 'USD');
+
+    expect(Money.dollar(10)).toEqual(reduced);
   });
 });

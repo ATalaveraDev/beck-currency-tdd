@@ -1,2 +1,4 @@
 export * from './money';
-export * from './franc';
+export * from './bank';
+
+export * from './interfaces/expression';
