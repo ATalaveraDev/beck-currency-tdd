@@ -1,4 +1,4 @@
-import { Bank, Expression, Money } from '../src/internal';
+import { Bank, Expression, Money, Sum } from '../src/internal';
 
 describe('Currency', () => {
   it('Multiplication', () => {
@@ -33,5 +33,22 @@ describe('Currency', () => {
     const reduced: Money = bank.reduce(sum, 'USD');
 
     expect(Money.dollar(10)).toEqual(reduced);
+  });
+
+  it('Plus Returns Sum', () => {
+    const five: Money = Money.dollar(5);
+    const result: Expression = five.plus(five);
+    const sum: Sum = <Sum>result;
+
+    expect(five).toEqual(sum.augend);
+    expect(five).toEqual(sum.addend);
+  });
+
+  it('Reduce Sum', () => {
+    const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
+    const bank: Bank = new Bank();
+    const result: Money = bank.reduce(sum, 'USD');
+
+    expect(Money.dollar(7)).toEqual(result);
   });
 });

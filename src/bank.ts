@@ -1,10 +1,11 @@
-import { Expression } from './internal';
-import { Money } from './money';
+import { Expression, Money, Sum } from './internal';
 
 export class Bank {
   constructor() { }
 
-  reduce(source: Expression, to: string): any {
-    return Money.dollar(10);
+  reduce(source: Expression, to: string): Money {
+    const sum: Sum = <Sum>source;
+    
+    return sum.reduce(to);
   }
 }
