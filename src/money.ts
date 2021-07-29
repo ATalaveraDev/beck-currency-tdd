@@ -1,4 +1,4 @@
-import { Expression, Sum } from './internal';
+import { Bank, Expression, Sum } from './internal';
 
 export class Money implements Expression {
   amount: number = 0;
@@ -29,8 +29,10 @@ export class Money implements Expression {
     return this.currency;
   }
 
-  reduce(to: string): Money {
-    return this;
+  reduce(bank: Bank, to: string): Money {
+    const rate: number = bank.rate(this.currency, to);
+
+    return new Money(this.amount / rate, to);
   }
 
   equals(object: Object): boolean {

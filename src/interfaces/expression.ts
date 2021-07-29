@@ -1,5 +1,5 @@
-import { Money } from '../internal';
+import { Bank, Money } from '../internal';
 
 export interface Expression {
-  reduce(to: string): Money;
+  reduce(bank: Bank, to: string): Money;
 }

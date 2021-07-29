@@ -58,4 +58,16 @@ describe('Currency', () => {
 
     expect(Money.dollar(1)).toEqual(result);
   });
+
+  it('Reduce Money Differen Currency', () => {
+    const bank: Bank = new Bank();
+    bank.addRate('CHF', 'USD', 2);
+    const result: Money = bank.reduce(Money.franc(2), 'USD');
+
+    expect(Money.dollar(1)).toEqual(result);
+  });
+
+  it('Identity Rate', () => {
+    expect(1).toEqual(new Bank().rate('USD', 'USD'));
+  });
 });
