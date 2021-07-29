@@ -29,6 +29,10 @@ export class Money implements Expression {
     return this.currency;
   }
 
+  reduce(to: string): Money {
+    return this;
+  }
+
   equals(object: Object): boolean {
     const money: Money = <Money>object;
     

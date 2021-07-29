@@ -51,4 +51,11 @@ describe('Currency', () => {
 
     expect(Money.dollar(7)).toEqual(result);
   });
+
+  it('Reduce Money', () => {
+    const bank: Bank = new Bank();
+    const result: Money = bank.reduce(Money.dollar(1), 'USD');
+
+    expect(Money.dollar(1)).toEqual(result);
+  });
 });
