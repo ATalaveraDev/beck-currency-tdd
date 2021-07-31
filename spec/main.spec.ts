@@ -59,7 +59,7 @@ describe('Currency', () => {
     expect(Money.dollar(1)).toEqual(result);
   });
 
-  it('Reduce Money Differen Currency', () => {
+  it('Reduce Money Different Currency', () => {
     const bank: Bank = new Bank();
     bank.addRate('CHF', 'USD', 2);
     const result: Money = bank.reduce(Money.franc(2), 'USD');

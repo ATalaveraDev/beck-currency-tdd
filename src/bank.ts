@@ -1,10 +1,10 @@
 import { Expression, Money, Pair } from './internal';
 
 export class Bank {
-  private rates: Map<Pair, number>;
+  private rates: Array<{ from: string, to: string, value: number}>;
 
   constructor() {
-    this.rates = new Map();
+    this.rates = [];
   }
 
   reduce(source: Expression, to: string): Money {    
@@ -12,14 +12,14 @@ export class Bank {
   }
 
   addRate(from: string, to: string, rate: number) {
-    this.rates.set(new Pair(from, to), rate);
+    this.rates.push({ from, to, value: rate });
   }
 
   rate(from: string, to: string): number {
     if (from === to) return 1;
 
-    const rate: number = <number>this.rates.get(new Pair(from, to));
-    console.log(this.rates)
+    const rate: number = this.rates.filter(rate => rate.from === from && rate.to === to)[0].value;
+    
     return rate;
   }
 }
